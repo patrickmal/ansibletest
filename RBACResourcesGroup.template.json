@@ -1,0 +1,29 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": { 
+    "UsersGroup": {
+      "type": "string",
+      "defaultvalue": "3ec18802-456c-4a3f-83e7-c7949933d297",
+      "metadata": {
+        "description": "Object ID for the monitoring users group in AAD"
+      }
+    }
+  },
+  "variables": {
+    "ContributorRole": "[concat(subscription().Id, '/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c')]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Authorization/roleAssignments",
+      "name": "47ea923d-bbfb-4cae-a53b-6ae79b0d836f",
+      "apiVersion": "2017-10-01-preview",
+      "properties": {
+        "roleDefinitionId": "[variables('ContributorRole')]",
+        "principalId": "[parameters('UsersGroup')]",
+        "scope": "[resourceGroup().Id]"
+      }
+    }
+  ],
+  "outputs": {}
+}

@@ -1,0 +1,67 @@
+---
+- hosts: localhost
+  vars_files: 
+    - WebApp-vars.yml
+  gather_facts: no
+  tasks:
+  
+  - name: "Create a resource group"
+    azure_rm_resourcegroup:
+      name: "{{ ResourceGroupName }}"
+      location: "{{ RGlocation }}"
+    ignore_errors: yes
+
+  - name: "Create linux app service plan"
+    azure_rm_appserviceplan:
+      resource_group: "{{ ResourceGroupName }}"
+      name: "{{ AppServiceName }}"
+      location: "{{ RGlocation }}"
+      sku: "{{ AppServiceSKU }}"
+      is_linux: true
+      number_of_workers: "{{ NbWorker }}"
+    ignore_errors: yes
+
+  - name: "Create a windows web app with node, php"
+    azure_rm_webapp:
+      resource_group: "{{ ResourceGroupName }}"
+      name: "{{ WebAppName }}"
+      plan:
+        resource_group: "{{ ResourceGroupName }}"
+        name: "{{ AppServiceName }}"
+      frameworks:
+        - name: "php"
+          version: "{{ PhpVersion }}"
+    ignore_errors: yes
+
+  - name: "Create MySQL Server"
+    azure_rm_mysqlserver:
+      resource_group: "{{ ResourceGroupName }}"
+      name: "{{ SQLServerName }}"
+      sku:
+        name: GP_Gen4_2
+        tier: GeneralPurpose
+        capacity: 2
+      location: "{{ RGlocation }}"
+      storage_mb: "{{ SQLStorageMB }}"
+      admin_username: "{{ SQLAdminID }}"
+      admin_password: "{{ SQLAdminPW }}"
+    ignore_errors: yes
+  
+  - name: "Create MySQL database"
+    azure_rm_mysqldatabase:
+        resource_group: "{{ ResourceGroupName }}"
+        server_name: "{{ SQLServerName }}"
+        name: "{{ DBName }}"
+    ignore_errors: yes
+
+
+
+  # - name: "Deploy ARM template"
+  #   azure_rm_deployment:
+  #         state: present
+  #         resource_group_name: "{{ ResourceGroupName }}"
+  #         location: "{{ RGlocation }}"
+  #         template: "{{ lookup('file', '{{template_arm}}') }}"
+  #         parameters: "{{ lookup('file', '{{parameters_arm}}') }}"
+  #   ignore_errors: yes
+  

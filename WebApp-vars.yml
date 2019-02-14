@@ -1,0 +1,15 @@
+  RequesterEmail: "clements@exakis.com"
+  ResourceGroupName: "RG-TOTAL-DV-WE-EXAKIS"
+  RGlocation: "westeurope"
+  SQLServerName: "sqltotalansidp"
+  SQLStorageMB: "1024"
+  SQLAdminID: "SQLAdminTotal"
+  SQLAdminPW: "SQLAdminPW123568!"
+  DBName: "test123"
+  AppServiceName: "TotappService"
+  AppServiceSKU: "S1"
+  NbWorker: "2"
+  WebAppName: "WebTotapp"
+  PhpVersion: "7.0"
+  template_arm: RBACResourcesGroup.template.json 
+  parameters_arm: RBACResourcesGroup.parameters.json
