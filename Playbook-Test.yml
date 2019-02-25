@@ -1,8 +1,9 @@
-name: 
-hosts: localhost
-tasks:
-  - name: "Create a resource group"
-    azure_rm_resourcegroup:
-      name: "ansible-rg-kevin-test"
-      location: "westeurope"
+--- 
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: "Create a resource group"
+      azure_rm_resourcegroup:
+        name: "ansible-rg-kevin-test"
+        location: "westeurope"
  
