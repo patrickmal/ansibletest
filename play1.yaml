@@ -2,9 +2,6 @@
   name: testping
   hosts: all
   tasks:
-    - name: Install Python-pip in order to launch container
-      apt:
-       name: python-pip
     - name: isntall ansible
       pip:
        name: ansible[azure]
