@@ -2,8 +2,15 @@
   name: testping
   hosts: all
   tasks:
+    - name: Install rep
+      package:
+       name: epel-release
+    - name: Install Python
+      package:
+       name: python-pip 
     - name: isntall ansible
       pip:
        name: ansible[azure]
     - name: Ping test
       ping:
+
