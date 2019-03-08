@@ -2,6 +2,12 @@
 - hosts: localhost
   connection: local
   tasks:
+    - name: Install Python-pip
+      apt:
+       name: python-pip
+    - name: isntall ansible
+      pip:
+       name: ansible[azure]
     - name: "Create a resource group"
       azure_rm_resourcegroup:
         name: "ansible-rg-kevin-test"
