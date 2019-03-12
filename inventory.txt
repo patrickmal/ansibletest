@@ -1,0 +1,2 @@
+[all]
+machine1 ansible_host=172.10.0.4 ansible_ssh_pass=AdminAnsible123
