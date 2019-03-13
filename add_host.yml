@@ -1,0 +1,17 @@
+- name: add_host
+  hosts: localhost # target local host
+  connection: local # run actions locally
+  gather_facts: False
+  tasks:
+    - name: Add the instance to an ansible group called myapp
+      add_host:
+        hostname: "Clements@totalansiblevm.francecentral.cloudapp.azure.com"
+        ansible_host: "Clements@totalansiblevm.francecentral.cloudapp.azure.com"
+        ansible_pass: "AdminAnsible123"
+        ansible_user: Clements
+        groupname: myapp
+- name: add_host ping
+  hosts: myapp
+  tasks:
+    - name: Ping
+      ping:
