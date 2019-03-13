@@ -5,10 +5,10 @@
   tasks:
     - name: Add the instance to an ansible group called myapp
       add_host:
-        hostname: "Clements@totalansiblevm.francecentral.cloudapp.azure.com"
-        ansible_host: "Clements@totalansiblevm.francecentral.cloudapp.azure.com"
-        ansible_pass: "AdminAnsible123"
-        ansible_user: Clements
+        hostname: "10.1.0.54"
+        ansible_host: "10.1.0.54"
+        ansible_pass: "pat"
+        ansible_user: pat
         groupname: myapp
 - name: add_host ping
   hosts: myapp
