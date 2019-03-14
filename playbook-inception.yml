@@ -1,0 +1,23 @@
+---
+- name: 
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    hostname: "TotalAnsibleVM"
+    a_host: "totalansiblevm.francecentral.cloudapp.azure.com"
+    a_user: "Clements"
+    a_pass: "AdminAnsible123"
+    tasks:
+      - name: Add the instance to an ansible group named temphost
+        add_host:
+          hostname: "{{ hostname }}"
+          ansible_host: "{{ a_host }}"
+          ansible_user: "{{ a_user }}"
+          ansible_pass: "{{ a_pass }}"
+          groupname: temphost
+        become: yes
+      - import_playbook: /home/Clements/Total/Playbook-test.yml
+  
+
+ 
