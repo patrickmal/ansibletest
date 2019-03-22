@@ -1,5 +1,5 @@
   RequesterEmail: "keving@exakis.com"
-  ResourceGroupName: "RG-TOTAL-DV-WE-EXAKIS2"
+  ResourceGroupName: "RG-TOTAL-DV-WE-EXAKIS"
   RGlocation: "westeurope"
   SQLServerName: "sqltotalansidp2"
   SQLStorageMB: "1024"
